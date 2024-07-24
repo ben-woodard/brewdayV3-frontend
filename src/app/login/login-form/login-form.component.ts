@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
@@ -11,17 +11,33 @@ export class LoginFormComponent  implements OnInit{
 
   constructor (
     private fb: FormBuilder,
-  ) {}
+  ) {
+
+
+  }
 
   ngOnInit(): void {
 
     this.loginForm =  this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(1)]],
       lastName: ['', [Validators.required, Validators.minLength(1)]],
+      companyName: ['', [Validators.required, Validators.minLength(1)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
-      confirmPassWord: ['', Validators.required, Validators.minLength(5)]
+      confirmPassword: ['', Validators.required, Validators.minLength(5)]
+    }, {
+      validator:  this.passwordMatchValidator
     })
+
+
+  }
+
+  passwordMatchValidator(control: AbstractControl) {
+    return control.get('password')?.value=== control.get('confirmPassword')?.value
+    ? null : {mismatch : true}
+  }
+
+  onSubmit() {
 
   }
 
