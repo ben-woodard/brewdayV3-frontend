@@ -1,0 +1,66 @@
+<div class="w-75 border border-dark position-absolute top-50 start-50 translate-middle">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <h3 class="mt-5 mb-3 text-center">Register</h3>
+    <div class="row mb-3">
+
+      <div class="w-75 mx-auto my-2">
+        <label class="form-label">First Name:</label>
+        <input class="form-control w-100" type="text" formControlName="firstName">
+        <small class="text-danger" *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
+          First Name is Required
+        </small>
+      </div>
+
+      <div class="w-75 mx-auto">
+        <label class="form-label">Last Name:</label>
+        <input class="form-control" type="text" formControlName="lastName">
+        <small class="text-danger" *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
+          Last Name is Required
+        </small>
+      </div>
+
+      <div class="w-75 mx-auto">
+        <label class="form-label">Company Name:</label>
+        <input class="form-control" type="text" formControlName="companyName">
+        <small class="text-danger"
+          *ngIf="registerForm.get('companyName')?.invalid && registerForm.get('companyName')?.touched">
+          Company Name is Required
+        </small>
+      </div>
+
+      <div class="w-75 mx-auto">
+        <label class="form-label">Email:</label>
+        <input class="form-control" type="email" formControlName="email">
+        <small class="text-danger" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+          Email is Required
+        </small>
+      </div>
+
+      <div class="w-75 mx-auto">
+        <label class="form-label">Password:</label>
+        <input class="form-control" type="password" formControlName="password">
+        <small class="text-danger" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          Password is Required and Must 5 or More Characters
+        </small>
+      </div>
+
+      <div class="w-75 mx-auto">
+        <label class="form-label">Confirm Password:</label>
+        <input class="form-control" type="password" formControlName="confirmPassword">
+        <small class="text-danger"
+          *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+          Must Confirm Password
+        </small>
+        <small class="text-danger" *ngIf="registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched">
+          Passwords Do Not Match
+        </small>
+      </div>
+    </div>
+
+    <div class="w-25 mx-auto">
+      <button class="btn btn-primary my-3 w-75 mx-auto" type="submit" [disabled]="registerForm.invalid">Submit</button>
+    </div>
+
+  </form>
+</div>
+
