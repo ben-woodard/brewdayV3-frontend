@@ -11,6 +11,8 @@ import { SignInRequest } from '../../interfaces/SignInRequest';
 })
 export class LoginFormComponent  implements OnInit{
   loginForm: FormGroup = new FormGroup({});
+  invalidLogin: Boolean = false;
+  loginSuccess: Boolean = false;
 
   constructor (
     private fb: FormBuilder,
@@ -35,18 +37,22 @@ export class LoginFormComponent  implements OnInit{
 
     const signInRequest = {
       email: loginFormValues.email,
-      password: loginFormValues.password,
+      password: loginFormValues.password
     }
-
     console.log(signInRequest)
 
     this.authenticationService.signInUser(signInRequest).subscribe(
       response => {
+        this.loginSuccess = true;
+        this.invalidLogin = false;
         console.log(response)
       },
       error => {
+        this.loginSuccess = false;
+        this.invalidLogin = true;
         console.log(error)
-      }
+      },
+      () => {}
     )
   }
 

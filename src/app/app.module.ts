@@ -4,9 +4,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { LoginFormComponent } from './login/login-form/login-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { RegisterFormComponent } from './login/register-form/register-form.component';
+import { HomeComponent } from './home/home.component';
+import { AuthenticationServiceService } from './services/authentication-service.service';
 
 
 
@@ -18,16 +20,19 @@ import { RegisterFormComponent } from './login/register-form/register-form.compo
     LoginComponent,
     LoginFormComponent,
     RegisterFormComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    AuthenticationServiceService
   ],
   bootstrap: [AppComponent]
 })
