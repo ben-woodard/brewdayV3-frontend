@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  loginFormVisible: Boolean = false;
+
+  toggleLoginForm() {
+    this.loginFormVisible = !this.loginFormVisible
+  }
+
 }
