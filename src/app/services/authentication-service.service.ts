@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SignUpRequest } from '../interfaces/SignUpRequest';
 import BASE_URL from '../URL';
+import { SignInRequest } from '../interfaces/SignInRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,11 @@ export class AuthenticationServiceService {
     private http: HttpClient,
   ) { }
 
-  registerUser(signUpRequest: SignUpRequest){
+  registerUser(signUpRequest: SignUpRequest) {
     return this.http.post<SignUpRequest>(BASE_URL + "/register", signUpRequest)
+  }
+
+  signInUser(signInRequest: SignInRequest) {
+    return this.http.post<SignInRequest>(BASE_URL + "/signin", signInRequest)
   }
 }

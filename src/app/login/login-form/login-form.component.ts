@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationServiceService } from '../../services/authentication-service.service';
+import { SignInRequest } from '../../interfaces/SignInRequest';
 
 
 @Component({
@@ -32,14 +33,14 @@ export class LoginFormComponent  implements OnInit{
 
     const loginFormValues = this.loginForm.value;
 
-    const signUpRequest = {
+    const signInRequest = {
       email: loginFormValues.email,
       password: loginFormValues.password,
-      firstName: loginFormValues.firstName,
-      lastName: loginFormValues.lastName
     }
 
-    this.authenticationService.registerUser(signUpRequest).subscribe(
+    console.log(signInRequest)
+
+    this.authenticationService.signInUser(signInRequest).subscribe(
       response => {
         console.log(response)
       },
