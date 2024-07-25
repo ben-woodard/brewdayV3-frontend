@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationServiceService } from '../../services/authentication-service.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-register-form',
@@ -9,6 +10,7 @@ import { AuthenticationServiceService } from '../../services/authentication-serv
 })
 export class RegisterFormComponent {
   registerForm: FormGroup = new FormGroup({});
+  @Output() successfulReg: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
     private fb: FormBuilder,
@@ -53,9 +55,10 @@ export class RegisterFormComponent {
     this.authenticationService.registerUser(signUpRequest).subscribe(
       response => {
         console.log(response)
+        this.successfulReg.emit("Successful Registration")
       },
       error => {
-        console.log(error)
+        console.log(error + "There was an error registering")
       }
     )
   }

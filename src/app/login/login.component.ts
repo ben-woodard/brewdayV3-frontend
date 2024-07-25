@@ -13,4 +13,11 @@ export class LoginComponent {
     this.loginFormVisible = !this.loginFormVisible
   }
 
+  successfulRegistration(string : string){
+    console.log(string);
+    if(!this.loginFormVisible){
+      this.loginFormVisible = true;
+    }
+  }
+
 }

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <app-register-form *ngIf="!loginFormVisible"></app-register-form>
+      <app-register-form *ngIf="!loginFormVisible" (successfulReg)="successfulRegistration($event)"></app-register-form>
       <app-login-form *ngIf="loginFormVisible"></app-login-form>
     </div>
   </div>
