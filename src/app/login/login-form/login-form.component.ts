@@ -51,6 +51,7 @@ export class LoginFormComponent  implements OnInit{
         this.loginSuccess = false;
         this.invalidLogin = true;
         console.log(error)
+        console.log("No user found with these credentials")
       },
       () => {}
     )
