@@ -49,6 +49,7 @@ export class RegisterFormComponent {
     const signUpRequest = {
       email: registerFormValues.email,
       password: registerFormValues.password,
+      companyName: registerFormValues.companyName,
       firstName: registerFormValues.firstName,
       lastName: registerFormValues.lastName
     }
