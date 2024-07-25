@@ -61,6 +61,10 @@
       <button class="btn btn-primary my-3 w-75 mx-auto" type="submit" [disabled]="registerForm.invalid">Submit</button>
     </div>
 
+    <h4 class="text-danger" *ngIf="invalidReg">
+      There Was an Error Registering this User
+    </h4>
+
   </form>
 </div>
 

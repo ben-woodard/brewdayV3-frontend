@@ -10,6 +10,7 @@ import { EventEmitter } from '@angular/core';
 })
 export class RegisterFormComponent {
   registerForm: FormGroup = new FormGroup({});
+  invalidReg: boolean = false;
   @Output() successfulReg: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
@@ -56,9 +57,11 @@ export class RegisterFormComponent {
       response => {
         console.log(response)
         this.successfulReg.emit("Successful Registration")
+        this.invalidReg = false;
       },
       error => {
-        console.log(error + "There was an error registering")
+        console.log(error + "There was an error registering");
+        this.invalidReg = true;
       }
     )
   }
