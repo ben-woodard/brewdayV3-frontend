@@ -1,19 +1,15 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <app-register-form *ngIf="!loginFormVisible"></app-register-form>
+<div class="page-container">
+  <div class="w-100">
+    <div>
+      <app-register-form *ngIf="!loginFormVisible" (successfulReg)="successfulRegistration($event)"></app-register-form>
       <app-login-form *ngIf="loginFormVisible"></app-login-form>
     </div>
   </div>
-  <div class="row w-100">
-    <div>
-      <span *ngIf="!loginFormVisible">Already A User?</span>
-      <span *ngIf="loginFormVisible">Need To Register?</span>
-      <span (click)="toggleLoginForm()" class="mx-1 text-primary">
-        {{ loginFormVisible ? 'Register' : 'Login' }}
-      </span>
-    </div>
+  <div class="w-100 text-center">
+    <span *ngIf="!loginFormVisible">Already A User?</span>
+    <span *ngIf="loginFormVisible">Need To Register?</span>
+    <span (click)="toggleLoginForm()" class="mx-1 text-primary">
+      {{ loginFormVisible ? 'Register' : 'Login' }}
+    </span>
   </div>
 </div>
-
-

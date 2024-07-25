@@ -39,8 +39,7 @@ export class LoginFormComponent  implements OnInit{
       email: loginFormValues.email,
       password: loginFormValues.password
     }
-    console.log(signInRequest)
-
+  
     this.authenticationService.signInUser(signInRequest).subscribe(
       response => {
         this.loginSuccess = true;
