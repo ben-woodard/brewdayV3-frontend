@@ -22,6 +22,9 @@
       <div class="w-75 mx-auto text-center">
         <button class="btn btn-primary my-3 w-25" type="submit" [disabled]="loginForm.invalid">Submit</button>
       </div>
+      <p class="text-danger" *ngIf="invalidLogin">
+        There was an Error Logging In
+      </p>
     </div>
   </form>
 </div>
