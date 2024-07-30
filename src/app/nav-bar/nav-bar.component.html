@@ -9,12 +9,12 @@
     <p class="my-auto p-1 pb-2">Recipes</p>
   </div>
   <div>
-    <p class="my-auto p-1 pb-2">Inventory</p>
+    <p class="my-auto p-1 pb-2" [routerLink]="['/inventory']">Inventory</p>
   </div>
   <div>
     <p class="my-auto p-1 pb-2">Orders</p>
   </div>
   <div>
-    <button class="my-auto p-1 btn btn-light">Logout</button>
+    <button class="my-auto p-1 btn btn-light" (click)="handleLogout()">Logout</button>
   </div>
 </div>

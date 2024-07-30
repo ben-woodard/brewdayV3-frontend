@@ -10,6 +10,7 @@ import { RegisterFormComponent } from './login/register-form/register-form.compo
 import { HomeComponent } from './home/home.component';
 import { AuthenticationServiceService } from './services/authentication-service.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { InventoryComponent } from './inventory/inventory.component';
 
 
 
@@ -23,6 +24,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     RegisterFormComponent,
     HomeComponent,
     NavBarComponent,
+    InventoryComponent,
   ],
   imports: [
     BrowserModule,
