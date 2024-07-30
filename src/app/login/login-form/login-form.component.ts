@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationServiceService } from '../../services/authentication-service.service';
 import { Router } from '@angular/router';
+import { UserServiceService } from '../../services/user-service.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class LoginFormComponent  implements OnInit{
   constructor (
     private fb: FormBuilder,
     private authenticationService: AuthenticationServiceService,
-    private router: Router
+    private router: Router,
+    private userService: UserServiceService,
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +47,7 @@ export class LoginFormComponent  implements OnInit{
       response => {
         this.loginSuccess = true;
         this.invalidLogin = false;
-        console.log(response)
+        this.userService.setUser(response);
         this.router.navigate(['/home']);
       },
       error => {
@@ -53,8 +55,7 @@ export class LoginFormComponent  implements OnInit{
         this.invalidLogin = true;
         console.log(error)
         console.log("No user found with these credentials")
-      },
-      () => {}
+      }
     )
   }
 
