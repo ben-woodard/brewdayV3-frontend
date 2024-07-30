@@ -4,6 +4,7 @@ import { UserServiceService } from '../services/user-service.service';
 import { OverlayServiceService } from '../services/overlay-service.service';
 import { Ingredient } from '../interfaces/Ingredient';
 import { InventoryServiceService } from '../services/inventory-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inventory',
@@ -19,14 +20,30 @@ export class InventoryComponent implements OnInit{
     private userService: UserServiceService,
     private overlayService: OverlayServiceService,
     private inventoryService: InventoryServiceService,
+    private router: Router,
   ) {
 
   }
 
   ngOnInit(): void {
+
     this.userService.userObservable.subscribe(user => this.user = user);
 
-    this.inventoryService.getAllIngredientsByUser(this.user?.id).subscribe(
+    this.userService.userObservable.subscribe(user => this.user = user);
+    if (!this.user) {
+      this.router.navigate(['/'])
+    }
+
+    this.getAllIngredientsByUser(this.user?.id);
+
+  }
+
+  openIngredientForm() {
+    this.overlayService.showOverlay();
+  }
+
+  getAllIngredientsByUser(userId: number | undefined) {
+    this.inventoryService.getAllIngredientsByUser(userId).subscribe(
       (data: Ingredient[])=> {
         this.ingredients = data;
         console.log(this.ingredients)
@@ -37,12 +54,8 @@ export class InventoryComponent implements OnInit{
     )
   }
 
-  openIngredientForm() {
-    this.overlayService.showOverlay();
-  }
-
   addInventoryItem() {
-
+    this.getAllIngredientsByUser(this.user?.id);
   }
 
 }

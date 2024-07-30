@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Ingredient } from '../../interfaces/Ingredient';
 import { OverlayServiceService } from '../../services/overlay-service.service';
 import { InventoryServiceService } from '../../services/inventory-service.service';
 import { UserServiceService } from '../../services/user-service.service';
 import { User } from '../../interfaces/User';
+import { EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class IngredientFormComponent implements OnInit{
   ingredientForm: FormGroup = new FormGroup({});
   formVisible : Boolean = false;
   @Input() ingredient : Ingredient | null =  null;
+  @Output() updateInventory: EventEmitter<Ingredient> = new EventEmitter<Ingredient>();
 
 
   constructor(
@@ -32,8 +34,8 @@ export class IngredientFormComponent implements OnInit{
 
     this.ingredientForm = this.fb.group({
       ingredientName: ['', [Validators.required, Validators.minLength(1)]],
-      amountInStock: [0],
-      orderingThreshold: [0],
+      amountInStock: [0, Validators.required],
+      orderingThreshold: [0, Validators.required],
       // ingredientType: ['', Validators.required],
       // unitOfMeasurement: ['', Validators.required]
     })
@@ -59,6 +61,8 @@ export class IngredientFormComponent implements OnInit{
       response => {
         console.log(response)
         this.formVisible = false;
+        this.updateInventory.emit();
+        this.ingredientForm.reset();
       },
       error => {
         console.log(error)

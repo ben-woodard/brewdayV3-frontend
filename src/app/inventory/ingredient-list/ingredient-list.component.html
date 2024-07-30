@@ -1,1 +1,24 @@
-<p>ingredient-list works!</p>
+<div class="w-100">
+  <table class="mx-auto w-75 table table-bordered">
+    <thead>
+      <tr class="text-center">
+        <th>Ingredient Name</th>
+        <th>Ingredient type</th>
+        <th>Amount In Stock</th>
+        <th>Order Threshold</th>
+        <th>Unit of Measurement</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ingredient of ingredients">
+        <td>{{ingredient.ingredientName}}</td>
+        <td>{{ingredient.ingredientType}}</td>
+        <td>{{ingredient.amountInStock}}</td>
+        <td>{{ingredient.orderingThreshold}}</td>
+        <td>{{ingredient.unitOfMeasurement}}</td>
+        <td class="text-center"><button class="btn btn-primary">Update</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
