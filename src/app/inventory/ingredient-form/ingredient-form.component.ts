@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Ingredient } from '../../interfaces/Ingredient';
 import { OverlayServiceService } from '../../services/overlay-service.service';
+import { InventoryServiceService } from '../../services/inventory-service.service';
+import { UserServiceService } from '../../services/user-service.service';
+import { User } from '../../interfaces/User';
 
 
 @Component({
@@ -10,16 +13,21 @@ import { OverlayServiceService } from '../../services/overlay-service.service';
   styleUrl: './ingredient-form.component.css'
 })
 export class IngredientFormComponent implements OnInit{
+  user : User | null = null;
   ingredientForm: FormGroup = new FormGroup({});
   @Input() ingredient : Ingredient | null =  null;
   @Input() formVisible : Boolean = false;
 
   constructor(
     private fb: FormBuilder,
-    private overlayService : OverlayServiceService
+    private overlayService : OverlayServiceService,
+    private inventoryService: InventoryServiceService,
+    private userService : UserServiceService
   ) {}
 
   ngOnInit(): void {
+
+    this.userService.userObservable.subscribe(user => this.user = user);
 
     this.ingredientForm = this.fb.group({
       ingredientName: ['', [Validators.required, Validators.minLength(1)]],
@@ -35,6 +43,25 @@ export class IngredientFormComponent implements OnInit{
   }
 
   onSubmit() {
+    const formValues = this.ingredientForm.value;
+
+    const ingredientDto = {
+      ingredientId: 0,
+      ingredientName: formValues.ingredientName,
+      amountInStock: formValues.amountInStock,
+      orderingThreshold: formValues.orderingThreshold,
+      ingredientType: "MALT",
+      unitOfMeasurement: "lBS"
+    }
+
+    this.inventoryService.createIngredient(this.user?.id, ingredientDto).subscribe(
+      response => {
+        console.log(response)
+      },
+      error => {
+        console.log(error)
+      }
+    )
 
   }
 
@@ -43,3 +70,4 @@ export class IngredientFormComponent implements OnInit{
   }
 
 }
+

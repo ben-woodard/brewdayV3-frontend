@@ -1,5 +1,5 @@
 export interface Ingredient {
-  ingredientId: number,
+  ingredientId: number | null,
   ingredientName: string,
   amountInStock: number,
   orderingThreshold: number,

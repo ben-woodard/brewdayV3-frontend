@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import BASE_URL from '../URL';
+import { Ingredient } from '../interfaces/Ingredient';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class InventoryServiceService {
     private http: HttpClient
   ) { }
 
-  createIngredient() {
-    return this.http.post<SignUpRequest>(BASE_URL + "/register", signUpRequest)
+  createIngredient(userId: number | undefined, ingredient: Ingredient) {
+    return this.http.post(`${BASE_URL}/inventory/${userId}`, ingredient)
   }
 }
 

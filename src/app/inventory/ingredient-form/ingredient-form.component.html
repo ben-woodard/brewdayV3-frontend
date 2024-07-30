@@ -1,4 +1,4 @@
-<div class="overlay" *ngIf="formVisible" (click)="closeOverlay()">
+<div class="overlay" *ngIf="formVisible">
   <div class="w-50 border border-dark mx-auto mb-5 overlay-content">
     <form [formGroup]="ingredientForm" (ngSubmit)="onSubmit()">
       <h3 class="mt-5 mb-3 text-center">Add Inventory Item</h3>
