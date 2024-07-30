@@ -10,8 +10,8 @@ export class InventoryServiceService {
     private http: HttpClient
   ) { }
 
-  createIngredient() {
-    return this.http.post<SignUpRequest>(BASE_URL + "/register", signUpRequest)
-  }
+  // createIngredient() {
+  //   return this.http.post<SignUpRequest>(BASE_URL + "/register", signUpRequest)
+  // }
 }
-}
+
