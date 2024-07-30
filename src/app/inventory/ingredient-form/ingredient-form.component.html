@@ -1,1 +1,32 @@
-<p>ingredient-form works!</p>
+<div class="overlay" *ngIf="formVisible" (click)="closeOverlay()">
+  <div class="w-50 border border-dark mx-auto mb-5 overlay-content">
+    <form [formGroup]="ingredientForm" (ngSubmit)="onSubmit()">
+      <h3 class="mt-5 mb-3 text-center">Add Inventory Item</h3>
+      <div class="row mb-3">
+
+        <div class="w-75 mx-auto my-2">
+          <label class="form-label">Name:</label>
+          <input class="form-control" type="text" formControlName="ingredientName">
+          <small class="text-danger"
+            *ngIf="ingredientForm.get('ingredientName')?.invalid && ingredientForm.get('ingredientName')?.touched">
+            A Name is Required
+          </small>
+        </div>
+
+        <div class="w-75 mx-auto my-2">
+          <label class="form-label">Amount In Stock:</label>
+          <input class="form-control" type="number" formControlName="amountInStock">
+        </div>
+
+        <div class="w-75 mx-auto my-2">
+          <label class="form-label">Ordering Threshold Amount:</label>
+          <input class="form-control" type="number" formControlName="orderingThreshold">
+        </div>
+
+        <div class="w-75 mx-auto text-center">
+          <button class="btn btn-primary my-3 w-25" type="submit" [disabled]="ingredientForm.invalid">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
