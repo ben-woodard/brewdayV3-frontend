@@ -48,7 +48,6 @@ export class LoginFormComponent  implements OnInit{
         this.loginSuccess = true;
         this.invalidLogin = false;
         this.userService.setUser(response);
-        console.log("UserSubject " + JSON.stringify(this.userService.userSubject))
         this.router.navigate(['/home']);
       },
       error => {
@@ -56,8 +55,7 @@ export class LoginFormComponent  implements OnInit{
         this.invalidLogin = true;
         console.log(error)
         console.log("No user found with these credentials")
-      },
-      () => {}
+      }
     )
   }
 
