@@ -9,6 +9,7 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
 import { RegisterFormComponent } from './login/register-form/register-form.component';
 import { HomeComponent } from './home/home.component';
 import { AuthenticationServiceService } from './services/authentication-service.service';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 
 
@@ -21,6 +22,7 @@ import { AuthenticationServiceService } from './services/authentication-service.
     LoginFormComponent,
     RegisterFormComponent,
     HomeComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
