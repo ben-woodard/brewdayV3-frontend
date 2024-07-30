@@ -26,6 +26,9 @@
         <div class="w-75 mx-auto text-center">
           <button class="btn btn-primary my-3 w-25" type="submit" [disabled]="ingredientForm.invalid">Submit</button>
         </div>
+        <div class="w-75 mx-auto text-center">
+          <button class="btn btn-danger my-3 w-25" (click)="closeOverlay()">Close</button>
+        </div>
       </div>
     </form>
   </div>

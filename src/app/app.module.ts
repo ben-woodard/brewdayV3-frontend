@@ -12,6 +12,7 @@ import { AuthenticationServiceService } from './services/authentication-service.
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { IngredientFormComponent } from './inventory/ingredient-form/ingredient-form.component';
+import { IngredientListComponent } from './inventory/ingredient-list/ingredient-list.component';
 
 
 
@@ -27,6 +28,7 @@ import { IngredientFormComponent } from './inventory/ingredient-form/ingredient-
     NavBarComponent,
     InventoryComponent,
     IngredientFormComponent,
+    IngredientListComponent,
   ],
   imports: [
     BrowserModule,

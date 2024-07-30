@@ -13,7 +13,7 @@ export class InventoryServiceService {
   ) { }
 
   createIngredient(userId: number | undefined, ingredient: Ingredient) {
-    return this.http.post(`${BASE_URL}/inventory/${userId}`, ingredient)
+    return this.http.post(`${BASE_URL}/inventory/${userId}/create`, ingredient)
   }
 }
 

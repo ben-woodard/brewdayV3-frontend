@@ -15,8 +15,9 @@ import { User } from '../../interfaces/User';
 export class IngredientFormComponent implements OnInit{
   user : User | null = null;
   ingredientForm: FormGroup = new FormGroup({});
+  formVisible : Boolean = false;
   @Input() ingredient : Ingredient | null =  null;
-  @Input() formVisible : Boolean = false;
+
 
   constructor(
     private fb: FormBuilder,
@@ -57,6 +58,7 @@ export class IngredientFormComponent implements OnInit{
     this.inventoryService.createIngredient(this.user?.id, ingredientDto).subscribe(
       response => {
         console.log(response)
+        this.formVisible = false;
       },
       error => {
         console.log(error)
