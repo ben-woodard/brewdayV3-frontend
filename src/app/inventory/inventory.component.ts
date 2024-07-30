@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../interfaces/User';
+import { UserServiceService } from '../services/user-service.service';
 
 @Component({
   selector: 'app-inventory',
@@ -6,13 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './inventory.component.css'
 })
 export class InventoryComponent implements OnInit{
+  user : User | null = null;
 
-  constructor() {
+  constructor(
+    private userService: UserServiceService,
+  ) {
 
   }
 
   ngOnInit(): void {
-    
+    this.userService.userObservable.subscribe(user => this.user = user);
+  }
+
+  addInventoryItem() {
+
   }
 
 }
