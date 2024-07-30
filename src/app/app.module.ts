@@ -11,6 +11,10 @@ import { HomeComponent } from './home/home.component';
 import { AuthenticationServiceService } from './services/authentication-service.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { ModalFormComponent } from './modal-form/modal-form.component';
+import { FormComponent } from './form/form.component';
+import { InputComponent } from './form/input/input.component';
+import { IngredientFormComponent } from './inventory/ingredient-form/ingredient-form.component';
 
 
 
@@ -25,6 +29,7 @@ import { InventoryComponent } from './inventory/inventory.component';
     HomeComponent,
     NavBarComponent,
     InventoryComponent,
+    IngredientFormComponent,
   ],
   imports: [
     BrowserModule,
