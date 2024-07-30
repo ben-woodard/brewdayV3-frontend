@@ -15,5 +15,9 @@ export class InventoryServiceService {
   createIngredient(userId: number | undefined, ingredient: Ingredient) {
     return this.http.post(`${BASE_URL}/inventory/${userId}/create`, ingredient)
   }
+
+  getAllIngredientsByUser(userId: number | undefined) {
+    return this.http.get<Ingredient[]>(`${BASE_URL}/inventory/${userId}`);
+  }
 }
 
