@@ -5,5 +5,11 @@
     <button class="btn btn-primary my-4" (click)="openIngredientForm()">Add New Inventory Item</button>
   </div>
 </div>
-<app-ingredient-list [ingredients]="ingredients"></app-ingredient-list>
-<app-ingredient-form (updateInventory)="addInventoryItem()"></app-ingredient-form>
+<app-ingredient-list
+[ingredients]="ingredients"
+(selectedIngredient)="setSelectedIngredient($event)"
+></app-ingredient-list>
+<app-ingredient-form
+(updateInventory)="addInventoryItem()"
+[ingredient]="ingredient"
+></app-ingredient-form>

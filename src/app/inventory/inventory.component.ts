@@ -15,6 +15,7 @@ export class InventoryComponent implements OnInit{
   user : User | null = null;
   formVisible : Boolean = false;
   ingredients : Ingredient[] = [];
+  ingredient : Ingredient | null = null;
 
   constructor(
     private userService: UserServiceService,
@@ -52,6 +53,14 @@ export class InventoryComponent implements OnInit{
         console.log(error);
       }
     )
+  }
+
+  setSelectedIngredient(selectedIngredient : Ingredient | null) {
+    if(selectedIngredient) {
+      console.log(this.setSelectedIngredient)
+      this.ingredient = selectedIngredient;
+      this.openIngredientForm()
+    }
   }
 
   addInventoryItem() {
