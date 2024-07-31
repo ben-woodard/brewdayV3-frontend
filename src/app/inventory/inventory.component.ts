@@ -29,8 +29,6 @@ export class InventoryComponent implements OnInit{
   ngOnInit(): void {
 
     this.userService.userObservable.subscribe(user => this.user = user);
-
-    this.userService.userObservable.subscribe(user => this.user = user);
     if (!this.user) {
       this.router.navigate(['/'])
     }
@@ -63,7 +61,7 @@ export class InventoryComponent implements OnInit{
     }
   }
 
-  addInventoryItem() {
+  reloadInventory() {
     this.getAllIngredientsByUser(this.user?.id);
   }
 

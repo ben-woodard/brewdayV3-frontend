@@ -19,5 +19,10 @@ export class InventoryServiceService {
   getAllIngredientsByUser(userId: number | undefined) {
     return this.http.get<Ingredient[]>(`${BASE_URL}/inventory/${userId}`);
   }
+
+  updateIngredient(ingredient: Ingredient , ingredientId : number | null){
+    return this.http.patch<Ingredient>(`${BASE_URL}/inventory/${ingredientId}`, ingredient);
+  }
+
 }
 

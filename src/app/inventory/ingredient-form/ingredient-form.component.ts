@@ -64,7 +64,7 @@ export class IngredientFormComponent implements OnInit {
       const formValues = this.ingredientForm.value;
 
       const ingredientDto = {
-        ingredientId: 0,
+        ingredientId: this.ingredient ? this.ingredient.ingredientId : 0,
         ingredientName: formValues.ingredientName,
         amountInStock: formValues.amountInStock,
         orderingThreshold: formValues.orderingThreshold,
@@ -72,18 +72,34 @@ export class IngredientFormComponent implements OnInit {
         unitOfMeasurement: formValues.unitOfMeasurement
       }
 
-      this.inventoryService.createIngredient(this.user?.id, ingredientDto).subscribe(
-        response => {
-          console.log(response)
-          this.formVisible = false;
-          this.updateInventory.emit();
-          this.ingredientForm.reset();
-        },
-        error => {
-          this.invalidSubmission = true;
-          console.log(error)
-        }
-      )
+      if (this.ingredient) {
+        this.inventoryService.updateIngredient(ingredientDto, this.ingredient.ingredientId).subscribe(
+          response => {
+            console.log(response)
+            this.formVisible = false;
+            this.updateInventory.emit();
+            this.ingredientForm.reset();
+          },
+          error => {
+            this.invalidSubmission = true;
+            console.log(error)
+          }
+        )
+
+      } else {
+        this.inventoryService.createIngredient(this.user?.id, ingredientDto).subscribe(
+          response => {
+            console.log(response)
+            this.formVisible = false;
+            this.updateInventory.emit();
+            this.ingredientForm.reset();
+          },
+          error => {
+            this.invalidSubmission = true;
+            console.log(error)
+          }
+        )
+      }
     } else {
       this.invalidSubmission = true;
     }
