@@ -107,6 +107,17 @@ export class IngredientFormComponent implements OnInit {
 
   closeOverlay() {
     this.formVisible = false;
+    this.resetIngredientForm()
+  }
+
+  resetIngredientForm() {
+    this.ingredientForm.patchValue({
+      ingredientName: '',
+      amountInStock: 0,
+      orderingThreshold: 0,
+      ingredientType: '',
+      unitOfMeasurement: '',
+    })
   }
 
 }
