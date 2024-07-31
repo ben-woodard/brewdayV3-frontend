@@ -1,0 +1,60 @@
+<div class="overlay" *ngIf="formVisible">
+  <div class="w-50 border border-dark mx-auto mb-5 overlay-content">
+    <form [formGroup]="ingredientForm" (ngSubmit)="onSubmit()">
+      <h3 class="mt-5 mb-3 text-center">Add Inventory Item</h3>
+      <div class="row mb-3">
+
+        <div class="w-75 mx-auto my-2">
+          <label class="form-label">Name:</label>
+          <input class="form-control" type="text" formControlName="ingredientName">
+          <small class="text-danger"
+            *ngIf="ingredientForm.get('ingredientName')?.invalid && ingredientForm.get('ingredientName')?.touched">
+            A Name is Required
+          </small>
+        </div>
+
+        <div class="w-75 mx-auto my-2">
+          <label class="form-label">Amount In Stock:</label>
+          <input class="form-control" type="number" formControlName="amountInStock">
+        </div>
+
+        <div class="w-75 mx-auto my-2">
+          <label class="form-label">Ordering Threshold Amount:</label>
+          <input class="form-control" type="number" formControlName="orderingThreshold">
+        </div>
+
+        <div class="w-75 mx-auto my-2 d-flex flex-wrap">
+          <label class="form-label">Ingredient Type:</label>
+          <select formControlName="ingredientType" class="w-100 h-50">
+            <option>MALT</option>
+            <option>HOP</option>
+            <option>ADJUNCT</option>
+            <option>EXTRACT</option>
+            <option>SALT</option>
+            <option>YEAST</option>
+          </select>
+        </div>
+
+        <div class="w-75 mx-auto my-2">
+          <label class="form-label">Unit of Measurement:</label>
+          <select formControlName="unitOfMeasurement" class="w-100 h-50">
+            <option>lBS</option>
+            <option>OZ</option>
+            <option>EACH</option>
+          </select>
+        </div>
+
+        <div class="w-75 mx-auto text-center">
+          <button class="btn btn-primary my-3 w-25" type="submit" [disabled]="ingredientForm.invalid">Submit</button>
+        </div>
+
+        <div class="w-75 mx-auto text-center">
+          <button class="btn btn-danger my-3 w-25" (click)="closeOverlay()">Close</button>
+        </div>
+        <p class="text-danger text-center" *ngIf="invalidSubmission">
+          There was an Processing this Inventory Item
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
