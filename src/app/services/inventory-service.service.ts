@@ -24,5 +24,9 @@ export class InventoryServiceService {
     return this.http.patch<Ingredient>(`${BASE_URL}/inventory/${ingredientId}`, ingredient);
   }
 
+  deleteIngredient(ingredientId: number | null) {
+    return this.http.delete<Ingredient>(`${BASE_URL}/inventory/${ingredientId}`);
+  }
+
 }
 

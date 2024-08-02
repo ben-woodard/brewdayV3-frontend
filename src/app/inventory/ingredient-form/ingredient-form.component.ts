@@ -67,9 +67,12 @@ export class IngredientFormComponent implements OnInit {
         ingredientId: this.ingredient ? this.ingredient.ingredientId : 0,
         ingredientName: formValues.ingredientName,
         amountInStock: formValues.amountInStock,
+        recipes: this.ingredient ? this.ingredient.recipes : null,
+        orders: this.ingredient ? this.ingredient.orders : null,
         orderingThreshold: formValues.orderingThreshold,
         ingredientType: formValues.ingredientType,
-        unitOfMeasurement: formValues.unitOfMeasurement
+        unitOfMeasurement: formValues.unitOfMeasurement,
+        user: this.ingredient ? this.ingredient.user : null
       }
 
       if (this.ingredient) {

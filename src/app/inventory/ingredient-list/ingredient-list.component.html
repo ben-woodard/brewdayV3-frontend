@@ -20,7 +20,7 @@
         <td>{{ingredient.orderingThreshold}}</td>
         <td>{{ingredient.unitOfMeasurement}}</td>
         <td class="text-center"><button class="btn btn-primary" (click)="setSelectedIngredient(ingredient.ingredientId)">Update</button></td>
-        <td class="text-center"><button class="btn btn-danger">Delete</button></td>
+        <td class="text-center"><button class="btn btn-danger" (click)="deleteIngredient(ingredient.ingredientId)">Delete</button></td>
       </tr>
     </tbody>
   </table>
