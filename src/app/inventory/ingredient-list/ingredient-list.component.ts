@@ -10,6 +10,7 @@ import { InventoryServiceService } from '../../services/inventory-service.servic
 export class IngredientListComponent implements OnInit {
   @Input() ingredients: Ingredient[] = [];
   @Output() selectedIngredient: EventEmitter<Ingredient> = new EventEmitter<Ingredient>();
+  @Output() deleteIngred: EventEmitter<void> = new EventEmitter<void>();
   ingredientToEmit: Ingredient | null = null;
 
   constructor(
@@ -36,6 +37,7 @@ export class IngredientListComponent implements OnInit {
   deleteIngredient(ingredientId: number | null){
     this.inventoryService.deleteIngredient(ingredientId).subscribe(
       response => {
+        this.deleteIngred.emit()
         console.log(response)
       },
       error => {
