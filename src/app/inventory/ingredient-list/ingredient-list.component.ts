@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Ingredient } from '../../interfaces/Ingredient';
-import { InventoryServiceService } from '../../services/inventory-service.service';
 
 @Component({
   selector: 'app-ingredient-list',
@@ -13,10 +12,6 @@ export class IngredientListComponent implements OnInit {
   @Output() deleteIngred: EventEmitter<number> = new EventEmitter<number>();
   ingredientToEmit: Ingredient | null = null;
   errorDeleting: boolean = false;
-
-  constructor(
-    private inventoryService: InventoryServiceService,
-  ) { }
 
   ngOnInit(): void {
 
@@ -43,8 +38,5 @@ export class IngredientListComponent implements OnInit {
       this.errorDeleting = true;
       console.log("There was an error trying to delete the ingredient")
     }
-
   }
-
-
 }
