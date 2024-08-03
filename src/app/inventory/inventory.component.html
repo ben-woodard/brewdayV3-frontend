@@ -8,7 +8,7 @@
 <app-ingredient-list
 [ingredients]="ingredients"
 (selectedIngredient)="setSelectedIngredient($event)"
-(deleteIngred)="reloadInventory()"
+(deleteIngred)="deleteIngredient($event)"
 ></app-ingredient-list>
 <app-ingredient-form
 (updateInventory)="reloadInventory()"

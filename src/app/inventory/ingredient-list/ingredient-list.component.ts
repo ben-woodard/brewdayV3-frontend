@@ -10,12 +10,13 @@ import { InventoryServiceService } from '../../services/inventory-service.servic
 export class IngredientListComponent implements OnInit {
   @Input() ingredients: Ingredient[] = [];
   @Output() selectedIngredient: EventEmitter<Ingredient> = new EventEmitter<Ingredient>();
-  @Output() deleteIngred: EventEmitter<void> = new EventEmitter<void>();
+  @Output() deleteIngred: EventEmitter<number> = new EventEmitter<number>();
   ingredientToEmit: Ingredient | null = null;
+  errorDeleting: boolean = false;
 
   constructor(
     private inventoryService: InventoryServiceService,
-  ){}
+  ) { }
 
   ngOnInit(): void {
 
@@ -34,16 +35,15 @@ export class IngredientListComponent implements OnInit {
     }
   }
 
-  deleteIngredient(ingredientId: number | null){
-    this.inventoryService.deleteIngredient(ingredientId).subscribe(
-      response => {
-        this.deleteIngred.emit()
-        console.log(response)
-      },
-      error => {
-        console.log(error)
-      }
-    )
+  deleteIngredient(ingredientId: number | null) {
+    this.errorDeleting = false;
+    if (ingredientId) {
+      this.deleteIngred.emit(ingredientId)
+    } else {
+      this.errorDeleting = true;
+      console.log("There was an error trying to delete the ingredient")
+    }
+
   }
 
 

@@ -61,6 +61,19 @@ export class InventoryComponent implements OnInit{
     }
   }
 
+  deleteIngredient(ingredientId : number) {
+   console.log("In parent component delete ingredient")
+   this.inventoryService.deleteIngredient(ingredientId).subscribe(
+    response => {
+      console.log(response)
+      this.reloadInventory()
+    },
+    error => {
+      console.log(error)
+    }
+  )
+  }
+
   reloadInventory() {
     this.getAllIngredientsByUser(this.user?.id);
   }
