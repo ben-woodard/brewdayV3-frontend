@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Ingredient } from '../../interfaces/Ingredient';
+import { InventoryServiceService } from '../../services/inventory-service.service';
 
 @Component({
   selector: 'app-ingredient-list',
@@ -9,7 +10,12 @@ import { Ingredient } from '../../interfaces/Ingredient';
 export class IngredientListComponent implements OnInit {
   @Input() ingredients: Ingredient[] = [];
   @Output() selectedIngredient: EventEmitter<Ingredient> = new EventEmitter<Ingredient>();
+  @Output() deleteIngred: EventEmitter<void> = new EventEmitter<void>();
   ingredientToEmit: Ingredient | null = null;
+
+  constructor(
+    private inventoryService: InventoryServiceService,
+  ){}
 
   ngOnInit(): void {
 
@@ -26,6 +32,18 @@ export class IngredientListComponent implements OnInit {
     } else {
       console.log("There is no ingredient being passed to update")
     }
+  }
+
+  deleteIngredient(ingredientId: number | null){
+    this.inventoryService.deleteIngredient(ingredientId).subscribe(
+      response => {
+        this.deleteIngred.emit()
+        console.log(response)
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
 
 
