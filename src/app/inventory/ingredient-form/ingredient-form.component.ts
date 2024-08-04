@@ -110,6 +110,7 @@ export class IngredientFormComponent implements OnInit {
 
   closeOverlay() {
     this.formVisible = false;
+    this.ingredient = null;
     this.resetIngredientForm()
   }
 

@@ -11,11 +11,11 @@ import { Router } from '@angular/router';
   templateUrl: './inventory.component.html',
   styleUrl: './inventory.component.css'
 })
-export class InventoryComponent implements OnInit{
-  user : User | null = null;
-  formVisible : Boolean = false;
-  ingredients : Ingredient[] = [];
-  ingredient : Ingredient | null = null;
+export class InventoryComponent implements OnInit {
+  user: User | null = null;
+  formVisible: Boolean = false;
+  ingredients: Ingredient[] = [];
+  ingredient: Ingredient | null = null;
 
   constructor(
     private userService: UserServiceService,
@@ -43,7 +43,7 @@ export class InventoryComponent implements OnInit{
 
   getAllIngredientsByUser(userId: number | undefined) {
     this.inventoryService.getAllIngredientsByUser(userId).subscribe(
-      (data: Ingredient[])=> {
+      (data: Ingredient[]) => {
         this.ingredients = data;
         console.log(this.ingredients)
       },
@@ -53,25 +53,25 @@ export class InventoryComponent implements OnInit{
     )
   }
 
-  setSelectedIngredient(selectedIngredient : Ingredient | null) {
-    if(selectedIngredient) {
+  setSelectedIngredient(selectedIngredient: Ingredient | null) {
+    if (selectedIngredient) {
       console.log(this.setSelectedIngredient)
       this.ingredient = selectedIngredient;
       this.openIngredientForm()
     }
   }
 
-  deleteIngredient(ingredientId : number) {
-   console.log("In parent component delete ingredient")
-   this.inventoryService.deleteIngredient(ingredientId).subscribe(
-    response => {
-      console.log(response)
-      this.reloadInventory()
-    },
-    error => {
-      console.log(error)
-    }
-  )
+  deleteIngredient(ingredientId: number) {
+    console.log("In parent component delete ingredient")
+    this.inventoryService.deleteIngredient(ingredientId).subscribe(
+      response => {
+        console.log(response)
+        this.reloadInventory()
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
 
   reloadInventory() {
