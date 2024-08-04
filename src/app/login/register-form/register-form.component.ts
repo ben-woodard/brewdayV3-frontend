@@ -2,6 +2,7 @@ import { Component, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationServiceService } from '../../services/authentication-service.service';
 import { EventEmitter } from '@angular/core';
+import { Authority } from '../../interfaces/Authority';
 
 @Component({
   selector: 'app-register-form',
@@ -51,7 +52,8 @@ export class RegisterFormComponent {
       password: registerFormValues.password,
       companyName: registerFormValues.companyName,
       firstName: registerFormValues.firstName,
-      lastName: registerFormValues.lastName
+      lastName: registerFormValues.lastName,
+      authorities: []
     }
 
     this.authenticationService.registerUser(signUpRequest).subscribe(
@@ -68,3 +70,4 @@ export class RegisterFormComponent {
   }
 
 }
+
