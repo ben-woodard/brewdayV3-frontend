@@ -10,6 +10,7 @@ import { UserServiceService } from '../services/user-service.service';
 export class NavBarComponent implements OnInit {
   user: User | null = null;
   userIsAdmin: boolean = false;
+  usersList : User[] = [];
   constructor(
     private userService: UserServiceService,
   ) {}
@@ -19,6 +20,8 @@ export class NavBarComponent implements OnInit {
     if(this.user && this.user?.authorities?.some(auth => auth.authority === 'ROLE_ADMIN')) {
       this.userIsAdmin = true;
     }
+
+
 
   }
 
