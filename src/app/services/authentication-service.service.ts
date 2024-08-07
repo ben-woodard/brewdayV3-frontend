@@ -20,6 +20,6 @@ export class AuthenticationServiceService {
   }
 
   signInUser(signInRequest: SignInRequest){
-    return this.http.post<SignUpRequest>(`${BASE_URL}/api/v1/auth/signin`, signInRequest)
+    return this.http.post<any>(`${BASE_URL}/api/v1/auth/signin`, signInRequest)
   }
 }
