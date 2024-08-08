@@ -49,10 +49,9 @@ export class LoginFormComponent  implements OnInit{
       response => {
         this.loginSuccess = true;
         this.invalidLogin = false;
-        const returnedUser: User = response.user
         console.log(response)
+        const returnedUser: User = response.user
         this.userService.setUser(returnedUser);
-        console.log(this.userService.getUser())
         this.router.navigate(['/home']);
       },
       error => {
