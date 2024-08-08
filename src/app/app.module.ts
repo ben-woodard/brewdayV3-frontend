@@ -14,6 +14,7 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { IngredientFormComponent } from './inventory/ingredient-form/ingredient-form.component';
 import { IngredientListComponent } from './inventory/ingredient-list/ingredient-list.component';
 import { ProductsComponent } from './products/products.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 
 
@@ -31,6 +32,7 @@ import { ProductsComponent } from './products/products.component';
     IngredientFormComponent,
     IngredientListComponent,
     ProductsComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     BrowserModule,

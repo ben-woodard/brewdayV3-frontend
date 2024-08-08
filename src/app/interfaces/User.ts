@@ -1,8 +1,11 @@
+import { Authority } from "./Authority";
+
 export interface User {
   id?: number,
   email: string,
   password: string,
   firstName: string,
   lastName: string,
-  companyName: string
+  companyName: string,
+  authorities?: Authority[],
 }

@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationServiceService } from '../../services/authentication-service.service';
 import { Router } from '@angular/router';
 import { UserServiceService } from '../../services/user-service.service';
+import { sign } from 'node:crypto';
+import { User } from '../../interfaces/User';
 
 
 @Component({
@@ -47,7 +49,9 @@ export class LoginFormComponent  implements OnInit{
       response => {
         this.loginSuccess = true;
         this.invalidLogin = false;
-        this.userService.setUser(response);
+        console.log(response)
+        const returnedUser: User = response.user
+        this.userService.setUser(returnedUser);
         this.router.navigate(['/home']);
       },
       error => {

@@ -18,4 +18,8 @@ export class UserServiceService {
   setUser(user: User) {
     this.userSubject.next(user)
   }
+
+  getUser() {
+    return this.userSubject
+  }
 }
