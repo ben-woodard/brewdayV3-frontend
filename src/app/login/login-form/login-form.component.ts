@@ -3,8 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationServiceService } from '../../services/authentication-service.service';
 import { Router } from '@angular/router';
 import { UserServiceService } from '../../services/user-service.service';
-import { sign } from 'node:crypto';
-import { User } from '../../interfaces/User';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -22,6 +21,7 @@ export class LoginFormComponent  implements OnInit{
     private authenticationService: AuthenticationServiceService,
     private router: Router,
     private userService: UserServiceService,
+    private cookieService: CookieService,
   ) {}
 
   ngOnInit(): void {
@@ -50,8 +50,9 @@ export class LoginFormComponent  implements OnInit{
         this.loginSuccess = true;
         this.invalidLogin = false;
         console.log(response)
-        const returnedUser: User = response.user
-        this.userService.setUser(returnedUser);
+        this.userService.setUser(response.user);
+        this.cookieService.set('accessCookie', response.accessCookie)
+        this.cookieService.set('refreshCookie', response.refreshCookie)
         this.router.navigate(['/home']);
       },
       error => {
