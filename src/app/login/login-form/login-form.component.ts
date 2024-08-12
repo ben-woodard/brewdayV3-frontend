@@ -51,8 +51,9 @@ export class LoginFormComponent  implements OnInit{
         this.invalidLogin = false;
         console.log(response)
         this.userService.setUser(response.user);
-        this.cookieService.set('accessCookie', response.accessCookie)
-        this.cookieService.set('refreshCookie', response.refreshCookie)
+        this.cookieService.set('accessCookie', response.accessCookie.value)
+        this.cookieService.set('refreshCookie', response.refreshCookie.value)
+        this.cookieService.set('jwtToken', response.jwtToken)
         this.router.navigate(['/home']);
       },
       error => {
