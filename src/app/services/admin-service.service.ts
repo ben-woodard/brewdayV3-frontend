@@ -13,6 +13,6 @@ export class AdminServiceService {
   ) { }
 
   getAllUsers() {
-    return this.http.get<User[]>(`${BASE_URL}/admin`);
+    return this.http.get<User[]>(`${BASE_URL}/admin`, { withCredentials: true });
   }
 }
