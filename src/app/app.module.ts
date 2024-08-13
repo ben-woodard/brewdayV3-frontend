@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { LoginFormComponent } from './login/login-form/login-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { RegisterFormComponent } from './login/register-form/register-form.component';
 import { HomeComponent } from './home/home.component';
 import { AuthenticationServiceService } from './services/authentication-service.service';
@@ -15,6 +15,7 @@ import { IngredientFormComponent } from './inventory/ingredient-form/ingredient-
 import { IngredientListComponent } from './inventory/ingredient-list/ingredient-list.component';
 import { ProductsComponent } from './products/products.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { JwtInterceptor } from './services/JwtInterceptor';
 
 
 
@@ -44,7 +45,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
   providers: [
     provideClientHydration(),
     provideHttpClient(withFetch()),
-    AuthenticationServiceService
+    AuthenticationServiceService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
