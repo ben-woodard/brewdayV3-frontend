@@ -14,7 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class LoginFormComponent  implements OnInit{
   loginForm: FormGroup = new FormGroup({});
   invalidLogin: Boolean = false;
-  loginSuccess: Boolean = false;
+
 
   constructor (
     private fb: FormBuilder,
@@ -38,6 +38,8 @@ export class LoginFormComponent  implements OnInit{
       return;
     }
 
+    this.invalidLogin = false;
+
     const loginFormValues = this.loginForm.value;
 
     const signInRequest = {
@@ -47,8 +49,6 @@ export class LoginFormComponent  implements OnInit{
 
     this.authenticationService.signInUser(signInRequest).subscribe(
       response => {
-        this.loginSuccess = true;
-        this.invalidLogin = false;
         console.log(response)
         this.userService.setUser(response.user);
         this.cookieService.set('accessCookie', response.accessCookie.value)
@@ -57,7 +57,6 @@ export class LoginFormComponent  implements OnInit{
         this.router.navigate(['/home']);
       },
       error => {
-        this.loginSuccess = false;
         this.invalidLogin = true;
         console.log(error)
         console.log("No user found with these credentials")
