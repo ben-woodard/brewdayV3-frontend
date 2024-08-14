@@ -7,34 +7,49 @@ import { User } from '../../interfaces/User';
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css'
 })
-export class UserListComponent implements OnInit{
+export class UserListComponent implements OnInit {
   usersAvaliable: boolean = false;
   users: User[] = []
 
 
   constructor(
     private adminService: AdminServiceService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-      this.adminService.getAllUsers().subscribe(
-        response => {
-          if(response){
-            this.usersAvaliable = true;
-            this.users = response
-            for(let user of this.users) {
-              console.log(user.authorities)
-            }
-          }
-        },
-        error => {
-          console.log(error)
-        }
-      )
+    this.getUsers()
   }
 
-makeAdmin() {
-  
-}
+  makeAdmin(id: number | undefined) {
+    this.adminService.makeAdmin(id).subscribe(
+      response => {
+        this.getUsers()
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  getUserRole(user: User): string {
+    return user.authorities?.some(auth => auth.authority === 'ROLE_ADMIN') ? 'Admin' : 'User';
+  }
+
+  getUsers() {
+    this.adminService.getAllUsers().subscribe(
+      response => {
+        if (response) {
+          this.usersAvaliable = true;
+          this.users = response
+          for (let user of this.users) {
+            console.log(user.authorities)
+          }
+        }
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
 
 }

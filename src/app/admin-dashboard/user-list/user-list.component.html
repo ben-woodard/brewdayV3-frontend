@@ -16,8 +16,8 @@
         <td>{{user.firstName}}</td>
         <td>{{user.lastName}}</td>
         <td>{{user.companyName}}</td>
-        <td>{{ user.authorities?.[0]?.authority }}</td>
-        <td class="text-center"><button class="btn btn-primary" (click)="makeAdmin()">Make Admin</button></td>
+        <td>{{ getUserRole(user) }}</td>
+        <td class="text-center"><button class="btn btn-primary" (click)="makeAdmin(user.id)">Make Admin</button></td>
       </tr>
     </tbody>
   </table>
