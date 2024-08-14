@@ -16,6 +16,7 @@ import { IngredientListComponent } from './inventory/ingredient-list/ingredient-
 import { ProductsComponent } from './products/products.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { JwtInterceptor } from './services/JwtInterceptor';
+import { UserListComponent } from './admin-dashboard/user-list/user-list.component';
 
 
 
@@ -34,6 +35,7 @@ import { JwtInterceptor } from './services/JwtInterceptor';
     IngredientListComponent,
     ProductsComponent,
     AdminDashboardComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
