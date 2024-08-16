@@ -50,11 +50,13 @@ export class RegisterFormComponent {
     const signUpRequest = {
       email: registerFormValues.email,
       password: registerFormValues.password,
-      requestedCompanyId: registerFormValues.requestedCompanyId,
+      companyId: registerFormValues.requestedCompanyId,
       firstName: registerFormValues.firstName,
       lastName: registerFormValues.lastName,
       authorities: []
     }
+
+    console.log(signUpRequest)
 
     this.authenticationService.registerUser(signUpRequest).subscribe(
       response => {

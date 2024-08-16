@@ -1,4 +1,5 @@
 import { Authority } from "./Authority";
+import { Company } from "./Company";
 
 export interface User {
   id?: number,
@@ -6,6 +7,7 @@ export interface User {
   password: string,
   firstName: string,
   lastName: string,
-  companyName: string,
+  company: Company,
+  requestedcompany: Company,
   authorities?: Authority[],
 }
