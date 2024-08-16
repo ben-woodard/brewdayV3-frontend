@@ -20,10 +20,10 @@
       </div>
 
       <div class="w-75 mx-auto">
-        <label class="form-label">Company Name:</label>
-        <input class="form-control" type="text" formControlName="companyName">
+        <label class="form-label">Company Id:</label>
+        <input class="form-control" type="number" formControlName="requestedCompanyId">
         <small class="text-danger"
-          *ngIf="registerForm.get('companyName')?.invalid && registerForm.get('companyName')?.touched">
+          *ngIf="registerForm.get('requestedCompanyId')?.invalid && registerForm.get('requestedCompanyId')?.touched">
           Company Name is Required
         </small>
       </div>
