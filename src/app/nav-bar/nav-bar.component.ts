@@ -20,10 +20,11 @@ export class NavBarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userService.userObservable.subscribe(user => this.user = user);
-    if(this.user && this.user?.authorities?.some(auth => auth.authority === 'ROLE_ADMIN')) {
-      this.userIsAdmin = true;
-    }
+    // this.userService.userObservable.subscribe(user => this.user = user);
+    // if(this.user && this.user?.authorities?.some(auth => auth.authority === 'ROLE_ADMIN')) {
+    //   this.userIsAdmin = true;
+    // }
+  
   }
 
   handleLogout() {

@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { ProductsComponent } from './products/products.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { SuperDashboardComponent } from './super-dashboard/super-dashboard.component';
 
 const routes: Routes = [
   {path: "", component : LoginComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: "inventory", component: InventoryComponent},
   {path: "products", component: ProductsComponent},
   {path: "dashboard", component: AdminDashboardComponent},
+  {path: "super", component: SuperDashboardComponent},
 ];
 
 @NgModule({

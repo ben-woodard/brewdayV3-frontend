@@ -17,6 +17,7 @@ import { ProductsComponent } from './products/products.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { JwtInterceptor } from './services/JwtInterceptor';
 import { UserListComponent } from './admin-dashboard/user-list/user-list.component';
+import { SuperDashboardComponent } from './super-dashboard/super-dashboard.component';
 
 
 
@@ -36,6 +37,7 @@ import { UserListComponent } from './admin-dashboard/user-list/user-list.compone
     ProductsComponent,
     AdminDashboardComponent,
     UserListComponent,
+    SuperDashboardComponent,
   ],
   imports: [
     BrowserModule,
