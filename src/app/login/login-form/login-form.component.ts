@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UserServiceService } from '../../services/user-service.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Authority } from '../../interfaces/Authority';
+import { CompanyServiceService } from '../../services/company-service.service';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class LoginFormComponent  implements OnInit{
     private router: Router,
     private userService: UserServiceService,
     private cookieService: CookieService,
+    private companyService: CompanyServiceService,
   ) {}
 
   ngOnInit(): void {
@@ -50,8 +52,8 @@ export class LoginFormComponent  implements OnInit{
 
     this.authenticationService.signInUser(signInRequest).subscribe(
       response => {
-        console.log(response)
         this.userService.setUser(response.user);
+        this.companyService.setCompany(response.company)
         this.cookieService.set('accessCookie', response.accessCookie.value)
         this.cookieService.set('refreshCookie', response.refreshCookie.value)
         this.cookieService.set('jwtToken', response.jwtToken)

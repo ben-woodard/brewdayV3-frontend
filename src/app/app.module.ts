@@ -18,6 +18,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { JwtInterceptor } from './services/JwtInterceptor';
 import { UserListComponent } from './admin-dashboard/user-list/user-list.component';
 import { SuperDashboardComponent } from './super-dashboard/super-dashboard.component';
+import { RequestedUsersComponent } from './admin-dashboard/requested-users/requested-users.component';
 
 
 
@@ -38,6 +39,7 @@ import { SuperDashboardComponent } from './super-dashboard/super-dashboard.compo
     AdminDashboardComponent,
     UserListComponent,
     SuperDashboardComponent,
+    RequestedUsersComponent,
   ],
   imports: [
     BrowserModule,

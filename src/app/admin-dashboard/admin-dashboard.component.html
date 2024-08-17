@@ -1,7 +1,10 @@
 <app-nav-bar></app-nav-bar>
 <div class="d-flex justify-content-center align-items-center my-4">
   <div class="w-100 text-center">
-    <h1 class="my-2">Admin Dashboard</h1>
+    <h1 class="my-2">{{company?.companyName}} Admin Dashboard</h1>
   </div>
 </div>
-<app-user-list></app-user-list>
+<app-user-list
+[companyUsers]="companyUsers"
+(refreshUsers)="getCompanyUsers()"
+></app-user-list>
