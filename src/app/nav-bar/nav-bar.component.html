@@ -17,6 +17,9 @@
   <div *ngIf="this.userIsAdmin">
     <p class="my-auto p-1 pb-2" [routerLink]="['/dashboard']">Admin Dashboard</p>
   </div>
+  <div *ngIf="this.userIsSuperUser">
+    <p class="my-auto p-1 pb-2" [routerLink]="['/admin']">Site Admin Dashboard</p>
+  </div>
   <div>
     <button class="my-auto p-1 btn btn-light" (click)="handleLogout()">Logout</button>
   </div>

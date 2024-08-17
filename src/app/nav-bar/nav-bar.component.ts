@@ -12,19 +12,22 @@ import { Router } from '@angular/router';
 export class NavBarComponent implements OnInit {
   user: User | null = null;
   userIsAdmin: boolean = false;
-  usersList : User[] = [];
+  userIsSuperUser: boolean = false;
+  usersList: User[] = [];
   constructor(
     private userService: UserServiceService,
     private cookieService: CookieService,
     private router: Router,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    // this.userService.userObservable.subscribe(user => this.user = user);
-    // if(this.user && this.user?.authorities?.some(auth => auth.authority === 'ROLE_ADMIN')) {
-    //   this.userIsAdmin = true;
-    // }
-  
+    this.userService.userObservable.subscribe(user => this.user = user);
+    if (this.user && this.user?.authorities?.some(auth => auth.authority === 'SUPER')) {
+      this.userIsSuperUser = true;
+    }
+    if (this.user && this.user?.authorities?.some(auth => auth.authority === 'ROLE_ADMIN')) {
+      this.userIsAdmin = true;
+    }
   }
 
   handleLogout() {

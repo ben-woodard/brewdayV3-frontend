@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: "inventory", component: InventoryComponent},
   {path: "products", component: ProductsComponent},
   {path: "dashboard", component: AdminDashboardComponent},
-  {path: "super", component: SuperDashboardComponent},
+  {path: "admin", component: SuperDashboardComponent},
 ];
 
 @NgModule({
