@@ -1,8 +1,7 @@
-import { Component, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { AdminServiceService } from '../../services/admin-service.service';
 import { User } from '../../interfaces/User';
 import { Company } from '../../interfaces/Company';
-import { CompanyServiceService } from '../../services/company-service.service';
 import { EventEmitter } from '@angular/core';
 
 @Component({
@@ -10,7 +9,7 @@ import { EventEmitter } from '@angular/core';
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css'
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent {
   usersAvaliable: boolean = false;
   user: User | null = null
   @Input() companyUsers: User[] = []
@@ -20,19 +19,7 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private adminService: AdminServiceService,
-    private companyService: CompanyServiceService,
   ) { }
-
-  ngOnInit(): void {
-
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-
-
-  }
-
-
 
   makeAdmin(id: number | undefined) {
     this.adminService.makeAdmin(id).subscribe(
@@ -50,7 +37,7 @@ export class UserListComponent implements OnInit {
   }
 
   isUserRole(user: User): boolean | undefined {
-    return user.authorities?.some(auth => auth.authority === 'ROLE_USER');
+    return user.authorities?.some(auth => auth.authority === 'USER');
 }
 
 }
