@@ -5,6 +5,6 @@ export interface SignUpRequest {
   password: string,
   firstName: string,
   lastName: string,
-  companyName: string,
-  authorityOpt?: Authority[] 
+  companyId: number,
+  authorityOpt?: Authority[]
 }

@@ -1,29 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { AdminServiceService } from '../../services/admin-service.service';
 import { User } from '../../interfaces/User';
+import { Company } from '../../interfaces/Company';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css'
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent {
   usersAvaliable: boolean = false;
-  users: User[] = []
+  user: User | null = null
+  @Input() companyUsers: User[] = []
+  @Output() refreshUsers: EventEmitter<void> = new EventEmitter<void>()
+  company: Company | null = null
 
 
   constructor(
     private adminService: AdminServiceService,
   ) { }
 
-  ngOnInit(): void {
-    this.getUsers()
-  }
-
   makeAdmin(id: number | undefined) {
     this.adminService.makeAdmin(id).subscribe(
       response => {
-        this.getUsers()
+        this.refreshUsers.emit()
       },
       error => {
         console.log(error)
@@ -31,25 +32,20 @@ export class UserListComponent implements OnInit {
     )
   }
 
-  getUserRole(user: User): string {
+  getUserRole(user: User) {
     return user.authorities?.some(auth => auth.authority === 'ROLE_ADMIN') ? 'Admin' : 'User';
   }
 
-  getUsers() {
-    this.adminService.getAllUsers().subscribe(
-      response => {
-        if (response) {
-          this.usersAvaliable = true;
-          this.users = response
-          for (let user of this.users) {
-            console.log(user.authorities)
-          }
-        }
-      },
-      error => {
-        console.log(error)
-      }
-    )
-  }
+  isUserRole(user: User): boolean | undefined {
+    return user.authorities?.some(auth => auth.authority === 'USER');
+}
 
 }
+
+
+
+
+
+
+
+

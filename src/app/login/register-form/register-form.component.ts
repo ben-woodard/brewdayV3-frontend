@@ -24,7 +24,7 @@ export class RegisterFormComponent {
     this.registerForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(1)]],
       lastName: ['', [Validators.required, Validators.minLength(1)]],
-      companyName: ['', [Validators.required, Validators.minLength(1)]],
+      requestedCompanyId: ['', [Validators.required, Validators.minLength(1)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(5)]]
@@ -50,11 +50,13 @@ export class RegisterFormComponent {
     const signUpRequest = {
       email: registerFormValues.email,
       password: registerFormValues.password,
-      companyName: registerFormValues.companyName,
+      companyId: registerFormValues.requestedCompanyId,
       firstName: registerFormValues.firstName,
       lastName: registerFormValues.lastName,
       authorities: []
     }
+
+    console.log(signUpRequest)
 
     this.authenticationService.registerUser(signUpRequest).subscribe(
       response => {
