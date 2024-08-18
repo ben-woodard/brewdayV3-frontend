@@ -8,4 +8,5 @@
 [companyUsers]="companyUsers"
 (refreshUsers)="getCompanyUsers()"
 ></app-user-list>
-<app-requested-users></app-requested-users>
+<app-requested-users
+(updateUserList)="getCompanyUsers()"></app-requested-users>

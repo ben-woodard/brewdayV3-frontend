@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../interfaces/User';
 import BASE_URL from '../URL';
 import { Observable } from 'rxjs/internal/Observable';
-import { Company } from '../interfaces/Company';
+
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +28,9 @@ export class AdminServiceService {
 
   getAllRequestedUsers(companyId: number | undefined) {
     return this.http.get<User[]>(`${BASE_URL}/admin/requestedUsers/${companyId}`);
+  }
+
+  addUserToCompany(userId: number | undefined, companyId: number | undefined) {
+    return this.http.post<User>(`${BASE_URL}/admin/addUser/${userId}/${companyId}`, null);
   }
 }
