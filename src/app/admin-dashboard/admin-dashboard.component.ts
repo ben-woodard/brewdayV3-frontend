@@ -33,6 +33,7 @@ export class AdminDashboardComponent implements OnInit {
   getCompanyUsers() {
     this.companyService.companyObservable.subscribe(company => this.company = company);
     if (this.company) {
+      console.log(this.company)
       this.adminService.getAllUsersByCompany(this.company.companyId).subscribe(
         response => {
           this.companyUsers = response

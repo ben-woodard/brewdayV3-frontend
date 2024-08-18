@@ -25,4 +25,8 @@ export class AdminServiceService {
   getAllUsersByCompany(companyId: number | null) {
     return this.http.get<User[]>(`${BASE_URL}/admin/${companyId}`);
   }
+
+  getAllRequestedUsers(companyId: number | undefined) {
+    return this.http.get<User[]>(`${BASE_URL}/admin/requestedUsers/${companyId}`);
+  }
 }

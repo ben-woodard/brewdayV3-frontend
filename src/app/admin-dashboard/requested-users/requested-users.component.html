@@ -1,1 +1,27 @@
-<p>requested-users works!</p>
+<div *ngIf="noRequestedUsers" class="w-100 text-center my-5">
+  <h4>No Requested Users</h4>
+</div>
+<div class="w-100 text-center my-5" *ngIf="!noRequestedUsers">
+  <h2 class="my-">Requested Users</h2>
+</div>
+<div class="w-100" *ngIf="!noRequestedUsers">
+  <table class="mx-auto w-75 table table-bordered">
+    <thead>
+      <tr class="text-center">
+        <th>Email</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Add To Company</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of companyRequestedUsers">
+        <td>{{user.email}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td class="text-center"><button class="btn btn-primary" (click)="addUserToCompany(user)">Add To Company</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
