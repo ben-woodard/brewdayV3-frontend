@@ -1,3 +1,4 @@
+import { Company } from "./Company";
 import { Order } from "./Order";
 import { Recipe } from "./Recipe";
 import { User } from "./User";
@@ -11,5 +12,5 @@ export interface Ingredient {
   orderingThreshold: number,
   ingredientType: string,
   unitOfMeasurement: string,
-  user: User | null
+  company: Company | null
 }

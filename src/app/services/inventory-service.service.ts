@@ -17,8 +17,8 @@ export class InventoryServiceService {
     return this.http.post(`${BASE_URL}/inventory/${userId}/create`, ingredient)
   }
 
-  getAllIngredientsByUser(userId: number | undefined): Observable<Ingredient[]> {
-    return this.http.get<Ingredient[]>(`${BASE_URL}/inventory/${userId}`);
+  getAllIngredientsByCompany(companyId: number | undefined): Observable<Ingredient[]> {
+    return this.http.get<Ingredient[]>(`${BASE_URL}/inventory/${companyId}`);
   }
   updateIngredient(ingredient: Ingredient , ingredientId : number | null){
     return this.http.patch<Ingredient>(`${BASE_URL}/inventory/${ingredientId}`, ingredient);

@@ -5,6 +5,8 @@ import { OverlayServiceService } from '../services/overlay-service.service';
 import { Ingredient } from '../interfaces/Ingredient';
 import { InventoryServiceService } from '../services/inventory-service.service';
 import { Router } from '@angular/router';
+import { CompanyServiceService } from '../services/company-service.service';
+import { Company } from '../interfaces/Company';
 
 @Component({
   selector: 'app-inventory',
@@ -12,6 +14,7 @@ import { Router } from '@angular/router';
   styleUrl: './inventory.component.css'
 })
 export class InventoryComponent implements OnInit {
+  company: Company | null = null
   user: User | null = null;
   formVisible: Boolean = false;
   ingredients: Ingredient[] = [];
@@ -21,19 +24,20 @@ export class InventoryComponent implements OnInit {
     private userService: UserServiceService,
     private overlayService: OverlayServiceService,
     private inventoryService: InventoryServiceService,
+    private companyService: CompanyServiceService,
     private router: Router,
   ) {
 
   }
 
   ngOnInit(): void {
-
+    this.companyService.companyObservable.subscribe(company => this.company = company);
     this.userService.userObservable.subscribe(user => this.user = user);
     if (!this.user) {
       this.router.navigate(['/'])
     }
 
-    this.getAllIngredientsByUser(this.user?.id);
+    this.getAllIngredientsByCompany(this.company?.companyId);
 
   }
 
@@ -41,8 +45,8 @@ export class InventoryComponent implements OnInit {
     this.overlayService.showOverlay();
   }
 
-  getAllIngredientsByUser(userId: number | undefined) {
-    this.inventoryService.getAllIngredientsByUser(userId).subscribe(
+  getAllIngredientsByCompany(companyId: number | undefined) {
+    this.inventoryService.getAllIngredientsByCompany(companyId).subscribe(
       (data: Ingredient[]) => {
         this.ingredients = data;
         console.log(this.ingredients)
@@ -75,7 +79,7 @@ export class InventoryComponent implements OnInit {
   }
 
   reloadInventory() {
-    this.getAllIngredientsByUser(this.user?.id);
+    this.getAllIngredientsByCompany(this.company?.companyId);
   }
 
 }
