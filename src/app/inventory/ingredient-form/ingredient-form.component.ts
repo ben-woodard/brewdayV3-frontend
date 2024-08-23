@@ -6,6 +6,9 @@ import { InventoryServiceService } from '../../services/inventory-service.servic
 import { UserServiceService } from '../../services/user-service.service';
 import { User } from '../../interfaces/User';
 import { EventEmitter } from '@angular/core';
+import { Company } from '../../interfaces/Company';
+import { CompanyServiceService } from '../../services/company-service.service';
+
 
 
 @Component({
@@ -14,6 +17,7 @@ import { EventEmitter } from '@angular/core';
   styleUrl: './ingredient-form.component.css'
 })
 export class IngredientFormComponent implements OnInit {
+  company: Company | null = null
   user: User | null = null;
   ingredientForm: FormGroup = new FormGroup({});
   formVisible: Boolean = false;
@@ -26,12 +30,13 @@ export class IngredientFormComponent implements OnInit {
     private fb: FormBuilder,
     private overlayService: OverlayServiceService,
     private inventoryService: InventoryServiceService,
-    private userService: UserServiceService
+    private userService: UserServiceService,
+    private companyService: CompanyServiceService,
   ) { }
 
   ngOnInit(): void {
-
     this.userService.userObservable.subscribe(user => this.user = user);
+    this.companyService.companyObservable.subscribe(company => this.company = company);
 
     this.ingredientForm = this.fb.group({
       ingredientName: ['', [Validators.required, Validators.minLength(1)]],
@@ -72,7 +77,7 @@ export class IngredientFormComponent implements OnInit {
         orderingThreshold: formValues.orderingThreshold,
         ingredientType: formValues.ingredientType,
         unitOfMeasurement: formValues.unitOfMeasurement,
-        user: this.ingredient ? this.ingredient.user : null
+        company: this.company
       }
 
       if (this.ingredient) {
