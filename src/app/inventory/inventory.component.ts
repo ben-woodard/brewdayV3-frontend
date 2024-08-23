@@ -66,7 +66,6 @@ export class InventoryComponent implements OnInit {
   }
 
   deleteIngredient(ingredientId: number) {
-    console.log("In parent component delete ingredient")
     this.inventoryService.deleteIngredient(ingredientId).subscribe(
       response => {
         console.log(response)
